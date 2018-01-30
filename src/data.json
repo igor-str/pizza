@@ -1,0 +1,9 @@
+{
+  "data": {
+    "id": 1,
+    "name": "Pizza Chili",
+    "price": 120,
+    "desc": "Pizza is a traditional Italian dish consisting of a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It can also be topped with additional vegetables, meats, and condiments.",
+    "availability": true
+  }
+}

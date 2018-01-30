@@ -3,17 +3,23 @@
     <p class="sort-by__title">Сортування:</p>
     <button class="sort-by__btn"></button>
     <button class="sort-by__btn"></button>
-    <form class="search" action="#">
-      <input class="search__text" type="search"/>
+    <form class="search">
+      <input class="search__text" v-model="searchString" type="search" placeholder="Введіть назву піци"/>
       <input class="search__submit" type="submit" value="Знайти"/>
     </form>
   </div>
 </template>
 
 <script>
+import ContentModule from "./ContentModule";
 export default {
   name: 'SortModule',
   data () {
+    return {
+      searchString: ""
+    }
+  },
+  computed: {
 
   }
 }
@@ -49,5 +55,10 @@ export default {
   }
   .search {
     padding-left: 30px;
+    &__text {
+      &::placeholder {
+        padding: 0 10px;
+      }
+    }
   }
 </style>
