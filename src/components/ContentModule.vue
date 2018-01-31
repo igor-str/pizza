@@ -1,29 +1,41 @@
 <template>
-  <div class="main">
-    <a class="product product-mod" href="#" v-for="product in filteredArticles">
-      <img class="product__img"  v-bind:src="product.img" v-bind:alt="product.name" width="440" height="440"/>
-      <!-- v-bind:src="data.img"    src="../assets/pizza-1.jpg" -->
-      <h3 class="product__head">{{ product.name }}</h3>
-      <div class="product__price">
-        <span>Ціна :</span>
-        <span>{{product.price}} грн</span>
-      </div>
-      <p class="product__desc">{{product.desc}}</p>
-      <div class="product__aval">
-        <span class="product__aval--yes">Є в наявності</span>
-        <span class="product__aval--no">Немає в наявності</span>
-      </div>
-    </a>
+  <div class="main-box">
+    <div class="sort-by">  <!-- назва класу може бути будь-яка -->
+      <p class="sort-by__title">Сортування:</p>
+      <button class="sort-by__btn"></button>
+      <button class="sort-by__btn"></button>
+      <form class="search">
+        <input class="search__text" v-model="searchString" type="search" placeholder="Введіть назву піци"/>
+        <!--<input class="search__submit" type="submit" value="Знайти"/>-->
+      </form>
+    </div>
+    <div class="main">
+      <a class="product product-mod" href="#" v-for="product in filteredProducts">
+        <img class="product__img"  v-bind:src="product.img" v-bind:alt="product.name" width="440" height="440"/>
+        <!-- v-bind:src="data.img"    src="../assets/pizza-1.jpg" -->
+        <h3 class="product__head">{{ product.name }}</h3>
+        <div class="product__price">
+          <span>Ціна :</span>
+          <span>{{product.price}} грн</span>
+        </div>
+        <p class="product__desc">{{product.desc}}</p>
+        <div class="product__aval">
+          <span class="product__aval--yes">Є в наявності</span>
+          <span class="product__aval--no">Немає в наявності</span>
+        </div>
+      </a>
+    </div>
   </div>
+
 </template>
 
 <script>
-import SortModule from "./SortModule";
 export default {
 //  components: {ProductModule},
   name: 'ContentModule',
   data () {
     return {
+      searchString: "",
       products: [
         {
           "id": 1,
@@ -35,28 +47,28 @@ export default {
         {
           "id": 2,
           "img": "../build/pizza-2.jpg",
-          "name": "Pizza Margarita",
+          "name": "Pizza New York",
           "price": 110,
           "desc": "2 Pizza is a traditional Italian dish consisting of a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It can also be topped with additional vegetables, meats, and condiments."
         },
         {
           "id": 3,
           "img": "../build/pizza-3.jpg",
-          "name": "Pizza Napoli",
+          "name": "Pizza Kebab",
           "price": 125,
           "desc": "3 Pizza is a traditional Italian dish consisting of a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It can also be topped with additional vegetables, meats, and condiments."
         },
         {
           "id": 4,
           "img": "../build/pizza-4.jpg",
-          "name": "Pizza Bayern",
+          "name": "Pizza Bagel",
           "price": 100,
           "desc": "4 Pizza is a traditional Italian dish consisting of a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It can also be topped with additional vegetables, meats, and condiments."
         },
         {
           "id": 5,
           "img": "../build/pizza-5.jpg",
-          "name": "Pizza Ukr",
+          "name": "Pizza Ukrainian",
           "price": 105,
           "desc": "5 Pizza is a traditional Italian dish consisting of a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It can also be topped with additional vegetables, meats, and condiments."
         },
@@ -66,29 +78,87 @@ export default {
           "name": "Pizza Americana",
           "price": 135,
           "desc": "6 Pizza is a traditional Italian dish consisting of a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It can also be topped with additional vegetables, meats, and condiments."
+        },
+        {
+          "id": 7,
+          "img": "../build/pizza-7.jpg",
+          "name": "Pizza Lahma Bi Ajeen",
+          "price": 154,
+          "desc": "7 Pizza is a traditional Italian dish consisting of a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It can also be topped with additional vegetables, meats, and condiments."
+        },
+        {
+          "id": 8,
+          "img": "../build/pizza-8.jpg",
+          "name": "Pizza Margherita",
+          "price": 144,
+          "desc": "8 Pizza is a traditional Italian dish consisting of a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It can also be topped with additional vegetables, meats, and condiments."
+        },
+        {
+          "id": 9,
+          "img": "../build/pizza-9.jpg",
+          "name": "Pizza Calzone",
+          "price": 180,
+          "desc": "9 Pizza is a traditional Italian dish consisting of a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It can also be topped with additional vegetables, meats, and condiments."
+        },
+        {
+          "id": 10,
+          "img": "../build/pizza-10.jpg",
+          "name": "Pizza Stromboli",
+          "price": 150,
+          "desc": "10 Pizza is a traditional Italian dish consisting of a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It can also be topped with additional vegetables, meats, and condiments."
+        },
+        {
+          "id": 11,
+          "img": "../build/pizza-11.jpg",
+          "name": "Pizza Marinara",
+          "price": 130,
+          "desc": "11 Pizza is a traditional Italian dish consisting of a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It can also be topped with additional vegetables, meats, and condiments."
+        },
+        {
+          "id": 12,
+          "img": "../build/pizza-12.jpg",
+          "name": "Pizza Neapolitan",
+          "price": 137,
+          "desc": "12 Pizza is a traditional Italian dish consisting of a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It can also be topped with additional vegetables, meats, and condiments."
+        },
+        {
+          "id": 13,
+          "img": "../build/pizza-13.jpg",
+          "name": "Pizza Deep Dish",
+          "price": 142,
+          "desc": "13 Pizza is a traditional Italian dish consisting of a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It can also be topped with additional vegetables, meats, and condiments."
+        },
+        {
+          "id": 14,
+          "img": "../build/pizza-14.jpg",
+          "name": "Pizza Mexican",
+          "price": 112,
+          "desc": "14 Pizza is a traditional Italian dish consisting of a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It can also be topped with additional vegetables, meats, and condiments."
+        },
+        {
+          "id": 15,
+          "img": "../build/pizza-15.jpg",
+          "name": "Pizza Tomato",
+          "price": 165,
+          "desc": "15 Pizza is a traditional Italian dish consisting of a yeasted flatbread typically topped with tomato sauce and cheese and baked in an oven. It can also be topped with additional vegetables, meats, and condiments."
         }
       ]
     }
   },
   computed: {
     // Вычисленное свойство, которое содержит только те статьи, которые соответствуют searchString.
-    filteredArticles: function () {
+    filteredProducts: function () {
       var articles_array = this.products;
-      var searchString = searchString;
-      console.log(searchString);
-
+      var searchString = this.searchString;
       if(!searchString){
         return articles_array;
       }
-
       searchString = searchString.trim().toLowerCase();
-
       articles_array = articles_array.filter(function(item){
         if(item.name.toLowerCase().indexOf(searchString) !== -1){
           return item;
         }
       })
-
       // Возвращает массив с отфильтрованными данными.
       return articles_array;
     }
@@ -98,7 +168,40 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+  .sort-by {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px 0;
+    color: #ffffff;
+    background-color: #42b983;
+    &__title {
+      margin: 0 30px;
+    }
+    &__btn {
+      background-color: #ffffff;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+      width: 16px;
+      height: 16px;
+      background-image: url("../assets/down-arrow.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+      &:nth-child(odd) {
+        margin-left: 5px;
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .search {
+    padding-left: 30px;
+    &__text {
+      padding: 2px 10px;
+    }
+  }
   .main {
+    min-height: 552px;
     margin: 2px 0;
     background: #21212e url('../assets/bg-main.png');
     padding: 15px;

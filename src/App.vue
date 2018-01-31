@@ -3,7 +3,6 @@
     <!--<router-view/>-->
     <navigation-module></navigation-module>
     <slider-module></slider-module>
-    <sort-module></sort-module>
     <content-module></content-module>
     <footer-module></footer-module>
     <!--<img src="./assets/logo.png">-->
@@ -14,16 +13,16 @@
 
   import NavigationModule from "./components/NavigationModule";
   import SliderModule from "./components/SliderModule";
-  import SortModule from "./components/SortModule";
   import ContentModule from "./components/ContentModule";
   import FooterModule from "./components/FooterModule";
 
   export default {
     components: {
       FooterModule,
-      SortModule,
       NavigationModule,
-      ContentModule, SliderModule},
+      ContentModule,
+      SliderModule
+    },
     name: 'app'
   }
 
