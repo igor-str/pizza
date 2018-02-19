@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <!--<router-view/>-->
+    <router-view>
+
+    </router-view>
     <navigation-module></navigation-module>
     <slider-module></slider-module>
     <content-module></content-module>
@@ -9,7 +11,7 @@
   </div>
 </template>
 
-<script>
+<script lang="js">
 
   import NavigationModule from "./components/NavigationModule";
   import SliderModule from "./components/SliderModule";

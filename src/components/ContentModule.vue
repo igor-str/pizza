@@ -1,13 +1,17 @@
 <template>
   <div class="main-box">
-    <div class="sort-by">  <!-- назва класу може бути будь-яка -->
-      <p class="sort-by__title">Сортування:</p>
-      <button class="sort-by__btn"></button>
-      <button class="sort-by__btn"></button>
+    <div class="sort-by">
+      <!--<p class="sort-by__title">Сортування по:</p>-->
+      <!--<span class="sort-by__item" v-for="item in sortByArr" v-on:click="sortBy(item)" >{{ changeKeyNmae(item) }}</span>-->
+      <!--<button class="sort-by__btn"></button>-->
+      <p class="sort-by__title">Пошук піци:</p>
       <form class="search">
         <input class="search__text" v-model="searchString" type="search" placeholder="Введіть назву піци"/>
-        <!--<input class="search__submit" type="submit" value="Знайти"/>-->
       </form>
+      <select v-model="sort">
+        <option value="" disabled selected>Сортування:</option>
+        <option v-for="item in sortByArr" :label="item.label" :value="item.value"></option>
+      </select>
     </div>
     <div class="main">
       <a class="product product-mod" href="#" v-for="product in filteredProducts">
@@ -19,23 +23,27 @@
           <span>{{product.price}} грн</span>
         </div>
         <p class="product__desc">{{product.desc}}</p>
-        <div class="product__aval">
-          <span class="product__aval--yes">Є в наявності</span>
-          <span class="product__aval--no">Немає в наявності</span>
+        <div class="product__add-bag">
+          <span class="product__add-bag--btn">Додати в корзину</span>
         </div>
       </a>
     </div>
   </div>
-
 </template>
 
-<script>
+<script lang="js">
 export default {
 //  components: {ProductModule},
   name: 'ContentModule',
-  data () {
+  data: function () {
     return {
-      searchString: "",
+      searchString: '',
+      sort: '',
+      sortByArr: [
+        { label: 'За замовчуванням', value: 'none' },
+        { label: 'По назві', value: 'name' },
+        { label: 'По ціні', value: 'price' }
+      ],
       products: [
         {
           "id": 1,
@@ -158,7 +166,7 @@ export default {
         if(item.name.toLowerCase().indexOf(searchString) !== -1){
           return item;
         }
-      })
+      });
       // Возвращает массив с отфильтрованными данными.
       return articles_array;
     }
@@ -175,6 +183,10 @@ export default {
     padding: 15px 0;
     color: #ffffff;
     background-color: #42b983;
+    &__item {
+      margin: 0 15px;
+      cursor: pointer;
+    }
     &__title {
       margin: 0 30px;
     }
@@ -194,8 +206,10 @@ export default {
       }
     }
   }
+  option[value=""][disabled] {
+    display: none;
+  }
   .search {
-    padding-left: 30px;
     &__text {
       padding: 2px 10px;
     }
@@ -242,17 +256,21 @@ export default {
     &__price {
       font-size: 18px;
     }
-    &__aval {
+    &__add-bag {
       font-size: 18px;
       margin-bottom: 10px;
-      &--yes {
-        color: #42b983;
-        text-align: center;
-      }
-      &--no {
-        color: #ff8c00;
-        text-align: center;
-        display: none;
+      color: #42b983;
+      text-align: center;
+      &--btn {
+        display: inline-flex;
+        border: 1px solid #42b983;
+        padding: 5px 15px;
+        transition: 0.3s;
+        &:hover {
+          border: 1px solid #ff8c00;
+          color: #ff8c00;
+          background-color: #f3e6d8;
+        }
       }
     }
     &:hover {

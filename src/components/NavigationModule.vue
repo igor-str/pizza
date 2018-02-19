@@ -8,7 +8,8 @@
         <router-link to="/foo">Go to Foo</router-link>
         <li><a href="#">Home</a></li>
         <li><a href="#">Каталог</a></li>
-        <li><a href="#">Зроби сам</a></li>
+        <!--<li><a href="#">Зроби сам</a></li>-->
+        <router-link to="/try">Зроби сам</router-link>
         <li><a href="#">Доставка</a></li>
         <li><a href="#">Контакти</a></li>
       </ul>
@@ -26,10 +27,10 @@
   </header>
 </template>
 
-<script>
+<script lang="js">
 export default {
   name: 'NavigationModule',
-  data () {
+  data: function () {
 
   }
 }

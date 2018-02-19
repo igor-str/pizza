@@ -12,13 +12,6 @@
     </swiper-slide>
   </swiper>
 
-  <!--<swiper-slide>I'm Slide 2</swiper-slide>-->
-  <!--<swiper-slide>I'm Slide 3</swiper-slide>-->
-  <!--<swiper-slide>I'm Slide 4</swiper-slide>-->
-  <!--<swiper-slide>I'm Slide 5</swiper-slide>-->
-  <!--<swiper-slide>I'm Slide 6</swiper-slide>-->
-  <!--<swiper-slide>I'm Slide 7</swiper-slide>-->
-
   <!--<div class="slider">-->
     <!--<a class="slider__link" href="#">-->
       <!--<img src="../assets/slider-2.jpg" alt="" width="1920" height="600"/>-->
@@ -43,7 +36,8 @@ export default {
         zoom: {
           maxRatio: 5,
         },
-        autoplay: true
+        autoplay: true,
+        loop: true
       }
     }
   },
