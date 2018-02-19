@@ -28,7 +28,7 @@
         </div>
         <div class="make__price">
           <span>До оплати :</span>
-          <span>{{ getPizzaSise }} грн</span>
+          <span>{{ getPizzaSize }} грн</span>
         </div>
       </div>
     </div>
@@ -128,7 +128,7 @@ export default {
   },
   computed: {
     count () { return this.items.filter(x => x.title[0] === 'e' ).length; },
-    getPizzaSise (){
+    getPizzaSize (){
       // var select = document.getElementById("size-pizza");
       // var value = select.value;
       // console.log(value);
