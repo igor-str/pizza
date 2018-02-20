@@ -36,7 +36,7 @@
       <h2>Додайте до Вашої піци додаткові інгрідієнти, це буде смачно!</h2>
       <div class="ingredients__box">
         <div class="ingredient" v-for="ingridient in ingridients">
-          <div class="ingredient__complete" v-if="show">
+          <div class="ingredient__complete" v-show="showMarker">
             <svg id="Capa_1" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 288.579 288.579">
             <g><path style="fill:#42b983;" d="M283.127,57.184l-22.871-22.131c-7.101-6.874-18.438-6.683-25.311,0.424L113.442,161.085 c-6.88,7.107-19.404,8.879-27.985,3.962l-42.824-24.542c-8.568-4.917-19.512-1.951-24.428,6.629l-15.83,27.615 c-4.917,8.58-1.951,19.518,6.623,24.434c0,0,103.889,59.46,103.931,59.376c0.048-0.084,137.25-141.57,170.617-176.058 C290.419,75.389,290.228,64.052,283.127,57.184z"/></g>
             </svg>
@@ -46,15 +46,8 @@
           </div>
           <h3 class="ingredient__name">{{ ingridient.name }}</h3>
           <p class="ingredient__price">+ {{ ingridient.price }} грн</p>
-          <button class="ingredient__button" v-on:click.prevent="countPizzaAdd" @click="show = !show">Додати</button>
+          <button class="ingredient__button" v-on:click.prevent="countPizzaAdd" @click="addIngridient(ingridient)">Додати</button>
         </div>
-      </div>
-
-      <div>
-        <h1> поля, які починаються на 'e', кількість: {{count}}</h1>
-        <ul>
-          <li v-for="item in items">{{ item.title }}</li>
-        </ul>
       </div>
     </div>
   </div>
@@ -66,8 +59,9 @@ export default {
   data: function () {
     return {
       counter: 1,
-      selected: '',
-      items: [],
+      selected: 'small',
+      ingridient: 0,
+      showMarker: false,
       ingridients: [
         {
           "id": 1,
@@ -127,13 +121,9 @@ export default {
     }
   },
   computed: {
-    count () { return this.items.filter(x => x.title[0] === 'e' ).length; },
     getPizzaSize (){
-      // var select = document.getElementById("size-pizza");
-      // var value = select.value;
-      // console.log(value);
-      var select = this.selected;
-      var count = this.counter;
+      let select = this.selected;
+      let count = this.counter;
       if (select === 'small') {
         select = 10;
       }
@@ -156,12 +146,13 @@ export default {
       if (this.counter > 1) {
         this.counter --
       }
+    },
+    addIngridient (ingridient) {
+      let price = ingridient.price;
+      console.log(price);
+      this.showMarker = true;
+      return price
     }
-  },
-  mounted () {
-    fetch('https://jsonplaceholder.typicode.com/posts').then(response => response.json()).then((data)=> {
-      this.items = data;
-    })
   }
 }
 </script>

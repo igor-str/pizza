@@ -12,6 +12,7 @@
         <router-link to="/try">Зроби сам</router-link>
         <li><a href="#">Доставка</a></li>
         <li><a href="#">Контакти</a></li>
+        <router-link to="/ajax">Ajax</router-link>
       </ul>
     </nav>
     <a class="phone" href="tel:+380980000000">+38(098)00-00-000</a>
