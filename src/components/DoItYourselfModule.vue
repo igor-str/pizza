@@ -5,7 +5,7 @@
         <img src="../assets/pizza-1.jpg" alt="" width="" height=""/>
       </div>
       <div class="make__settings">
-        <h1>Pizza New York</h1>
+        <h1>Зробіть піцу самі. Це легко!</h1>
         <div class="make__size">
           <p>Виберіть розмір піци:</p>
           <select id="size-pizza" v-model="selected">
@@ -16,9 +16,9 @@
           <span>Выбрано: {{ selected }}</span>
         </div>
         <ul class="make__desc">
-          <li class="make__desc-item">Томатный соус</li>
-          <li class="make__desc-item">Сыр моцарелла</li>
-          <li class="make__desc-item">Ветчина</li>
+          <li class="make__desc-item">Томатний соус</li>
+          <li class="make__desc-item">Сир моцарелла</li>
+          <li class="make__desc-item">Вітчина</li>
           <li class="make__desc-item">Ананас</li>
         </ul>
         <div class="make__count">
@@ -46,7 +46,7 @@
           </div>
           <h3 class="ingredient__name">{{ ingridient.name }}</h3>
           <p class="ingredient__price">+ {{ ingridient.price }} грн</p>
-          <button class="ingredient__button" v-on:click.prevent="countPizzaAdd" @click="addIngridient(ingridient)">Додати</button>
+          <button class="ingredient__button" @click.once="addIngridient(ingridient)">Додати</button> <!--v-on:click.once.prevent="countPizzaAdd"-->
         </div>
       </div>
     </div>
@@ -61,6 +61,7 @@ export default {
       counter: 1,
       selected: 'small',
       ingridient: 0,
+      ingridientPrice: 0,
       showMarker: false,
       ingridients: [
         {
@@ -133,7 +134,7 @@ export default {
       if (select === 'large') {
         select = 30;
       }
-      return select * count
+      return select * count + this.ingridientPrice
     }
   },
   methods: {
@@ -149,9 +150,10 @@ export default {
     },
     addIngridient (ingridient) {
       let price = ingridient.price;
-      console.log(price);
+      let itemPrice = this.ingridientPrice = price;
       this.showMarker = true;
-      return price
+      console.log(itemPrice);
+      return itemPrice
     }
   }
 }
@@ -205,6 +207,7 @@ export default {
       color: #fff;
       font-weight: 700;
       text-transform: uppercase;
+      outline: transparent;
       &:nth-child(1) {
         background-color: #42b983;
         margin-right: 20px;
@@ -251,6 +254,7 @@ export default {
     }
     &__button {
       border: 2px solid transparent;
+      outline: transparent;
       border-radius: 20px;
       padding: 10px 25px;
       cursor: pointer;

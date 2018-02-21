@@ -1,11 +1,10 @@
 <template>
   <div id="app">
-    <router-view>
-
-    </router-view>
     <navigation-module></navigation-module>
-    <slider-module></slider-module>
-    <content-module></content-module>
+    <router-view name="SliderModule"></router-view>
+    <router-view></router-view>
+    <!--<slider-module></slider-module>-->
+    <!--<content-module></content-module>-->
     <footer-module></footer-module>
     <!--<img src="./assets/logo.png">-->
   </div>

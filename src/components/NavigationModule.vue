@@ -5,14 +5,12 @@
     </a>
     <nav>
       <ul class="menu">
-        <router-link to="/foo">Go to Foo</router-link>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Каталог</a></li>
-        <!--<li><a href="#">Зроби сам</a></li>-->
-        <router-link to="/try">Зроби сам</router-link>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/catalog">Каталог</router-link></li>
+        <li><router-link to="/try">Зроби сам</router-link></li>
         <li><a href="#">Доставка</a></li>
-        <li><a href="#">Контакти</a></li>
-        <router-link to="/ajax">Ajax</router-link>
+        <li><router-link to="/contacts">Контакти</router-link></li>
+        <li><router-link to="/ajax">Ajax</router-link></li>
       </ul>
     </nav>
     <a class="phone" href="tel:+380980000000">+38(098)00-00-000</a>
