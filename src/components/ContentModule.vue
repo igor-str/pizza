@@ -1,22 +1,18 @@
 <template>
   <div class="main-box">
     <div class="sort-by">
-      <!--<p class="sort-by__title">Сортування по:</p>-->
-      <!--<span class="sort-by__item" v-for="item in sortByArr" v-on:click="sortBy(item)" >{{ changeKeyNmae(item) }}</span>-->
-      <!--<button class="sort-by__btn"></button>-->
       <p class="sort-by__title">Пошук піци:</p>
       <form class="search">
         <input class="search__text" v-model="searchString" type="search" placeholder="Введіть назву піци"/>
       </form>
-      <select v-model="sort">
+      <select v-model="sort" class="select">
         <option value="" disabled selected>Сортування:</option>
         <option v-for="item in sortByArr" :label="item.label" :value="item.value"></option>
       </select>
     </div>
     <div class="main">
-      <a class="product product-mod" href="#" v-for="product in filteredProducts">
+      <a class="product product-mod" href="#" v-for="product in sortProducts">
         <img class="product__img"  v-bind:src="product.img" v-bind:alt="product.name" width="440" height="440"/>
-        <!-- v-bind:src="data.img"    src="../assets/pizza-1.jpg" -->
         <h3 class="product__head">{{ product.name }}</h3>
         <div class="product__price">
           <span>Ціна :</span>
@@ -33,7 +29,6 @@
 
 <script lang="js">
 export default {
-//  components: {ProductModule},
   name: 'ContentModule',
   data: function () {
     return {
@@ -154,22 +149,42 @@ export default {
     }
   },
   computed: {
+    // old search into name
     // Вычисленное свойство, которое содержит только те статьи, которые соответствуют searchString.
-    filteredProducts: function () {
-      var articles_array = this.products;
-      var searchString = this.searchString;
-      if(!searchString){
-        return articles_array;
-      }
-      searchString = searchString.trim().toLowerCase();
-      articles_array = articles_array.filter(function(item){
-        if(item.name.toLowerCase().indexOf(searchString) !== -1){
-          return item;
-        }
+    // filteredProducts() {
+    //   let articles_array = this.products;
+    //   let searchString = this.searchString;
+    //   if(!searchString){
+    //     return articles_array;
+    //   }
+    //   searchString = searchString.trim().toLowerCase();
+    //   articles_array = articles_array.filter(function(item){
+    //     if(item.name.toLowerCase().indexOf(searchString) !== -1){
+    //       return item;
+    //     }
+    //   });
+    //   // Возвращает массив с отфильтрованными данными.
+    //   return articles_array;
+    // },
+    sortProducts() {
+      let products = this.products.filter((product) => {
+        return product.name.toLowerCase().includes(this.searchString.toLowerCase());
       });
-      // Возвращает массив с отфильтрованными данными.
-      return articles_array;
+      if (this.sort == 'name') {
+        return products.sort(function(a, b) {
+          return (a.name > b.name) ? 1 : -1 // sort by name
+        });
+      } else if (this.sort == 'price') {
+        return products.sort(function(a, b) {
+          return a.price - b.price // sort by price
+        });
+      } else {
+        return products;
+      }
     }
+  },
+  methods: {
+
   }
 }
 </script>
@@ -211,8 +226,26 @@ export default {
   }
   .search {
     &__text {
-      padding: 2px 10px;
+      padding: 4px 10px;
+      outline: none;
+      border: 1px solid #42b983;
+      border-radius: 15px;
+      color: #000;
+      &::placeholder {
+        color: #000;
+      }
+      &:focus {
+        border: 1px solid #00f385;
+      }
     }
+  }
+  .select {
+    margin-left: 30px;
+    border-radius: 15px;
+    padding: 3px 10px;
+    color: #000;
+    outline: none;
+    border: 1px solid #42b983;
   }
   .main {
     min-height: 552px;

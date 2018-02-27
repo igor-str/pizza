@@ -8,7 +8,7 @@
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/catalog">Каталог</router-link></li>
         <li><router-link to="/try">Зроби сам</router-link></li>
-        <li><a href="#">Доставка</a></li>
+        <li><router-link to="/delivery">Доставка</router-link></li>
         <li><router-link to="/contacts">Контакти</router-link></li>
         <li><router-link to="/ajax">Ajax</router-link></li>
       </ul>

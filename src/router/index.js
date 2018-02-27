@@ -5,6 +5,7 @@ import ContentModule from '@/components/ContentModule'
 import SliderModule from '@/components/SliderModule'
 import DoItYourselfModule from '@/components/DoItYourselfModule'
 import ContactsModule from '@/components/ContactsModule'
+import DeliveryModule from '@/components/DeliveryModule'
 import AjaxModule from '@/components/AjaxModule'
 
 
@@ -31,6 +32,11 @@ export default new Router({
       path: '/contacts',
       name: 'ContactsModule',
       component: ContactsModule
+    },
+    {
+      path: '/delivery',
+      name: 'DeliveryModule',
+      component: DeliveryModule
     },
     {
       path: '/ajax',
